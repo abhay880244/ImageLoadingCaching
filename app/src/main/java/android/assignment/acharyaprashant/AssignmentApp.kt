@@ -5,7 +5,7 @@ import android.app.Application
 import android.content.Context
 
 class AssignmentApp : Application() {
-    companion object{
+    companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
     }

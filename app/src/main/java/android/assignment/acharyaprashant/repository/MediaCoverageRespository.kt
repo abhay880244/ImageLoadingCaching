@@ -11,7 +11,7 @@ class MediaCoverageRepository {
             response.awaitResponse().body()?.map { mediaCoverage ->
                 val thumbnail = mediaCoverage.thumbnail
                 "${thumbnail.domain}/${thumbnail.basePath}/0/${thumbnail.key}"
-            }?: emptyList()
+            } ?: emptyList()
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList() // Return an empty list on error

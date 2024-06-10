@@ -16,7 +16,9 @@ import java.util.concurrent.Executors
 import kotlin.math.min
 
 object ImageLoader {
-    private val coroutinescope = CoroutineScope(Executors.newFixedThreadPool(6).asCoroutineDispatcher()) // Adjust the number of threads as needed
+    private val coroutinescope = CoroutineScope(
+        Executors.newFixedThreadPool(6).asCoroutineDispatcher()
+    ) // Adjust the number of threads as needed
     private val size = 20
     private val memoryCache = LruCache<String, Bitmap>(size)
     private val diskCacheDir = File(AssignmentApp.context.cacheDir, "images")
@@ -65,7 +67,11 @@ object ImageLoader {
     }
 
 
-    private fun createScaledBitmap(originalBitmap: Bitmap, desiredWidth: Int, desiredHeight: Int): Bitmap {
+    private fun createScaledBitmap(
+        originalBitmap: Bitmap,
+        desiredWidth: Int,
+        desiredHeight: Int
+    ): Bitmap {
         // Calculate scaling factors
         val scaleFactorWidth = desiredWidth.toFloat() / originalBitmap.width
         val scaleFactorHeight = desiredHeight.toFloat() / originalBitmap.height
@@ -78,7 +84,8 @@ object ImageLoader {
         val scaledHeight = (originalBitmap.height * scaleFactor).toInt()
 
         // Create the scaled bitmap
-        val scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, true)
+        val scaledBitmap =
+            Bitmap.createScaledBitmap(originalBitmap, scaledWidth, scaledHeight, true)
 
         // Recycle the original bitmap to release memory
         originalBitmap.recycle()
