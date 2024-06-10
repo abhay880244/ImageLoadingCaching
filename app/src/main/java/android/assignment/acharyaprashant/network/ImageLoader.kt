@@ -19,8 +19,8 @@ object ImageLoader {
     private val coroutinescope = CoroutineScope(
         Executors.newFixedThreadPool(6).asCoroutineDispatcher()
     ) // Adjust the number of threads as needed
-    private val size = 20
-    private val memoryCache = LruCache<String, Bitmap>(size)
+    private const val MEMORY_CACHE_SIZE = 20
+    private val memoryCache = LruCache<String, Bitmap>(MEMORY_CACHE_SIZE)
     private val diskCacheDir = File(AssignmentApp.context.cacheDir, "images")
 
     init {
