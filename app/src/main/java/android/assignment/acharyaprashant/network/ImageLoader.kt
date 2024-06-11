@@ -16,7 +16,7 @@ import java.util.concurrent.Executors
 import kotlin.math.min
 
 object ImageLoader {
-    private val coroutinescope = CoroutineScope(
+    private val coroutineScope = CoroutineScope(
         Executors.newFixedThreadPool(6).asCoroutineDispatcher()
     ) // Adjust the number of threads as needed
     private const val MEMORY_CACHE_SIZE = 20
@@ -30,7 +30,7 @@ object ImageLoader {
     }
 
     fun loadImage(url: String, onSuccess: (Bitmap) -> Unit, onError: () -> Unit): Job {
-        return coroutinescope.launch {
+        return coroutineScope.launch {
             try {
                 val bitmap = getBitmapFromCache(url) ?: downloadAndCacheImage(url)
                 bitmap?.let {
